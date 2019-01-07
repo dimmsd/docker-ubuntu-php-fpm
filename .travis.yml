@@ -1,0 +1,51 @@
+sudo: required
+language: ruby
+services: docker
+env:
+  global:
+  - DOCKER_COMPOSE_VERSION=1.18.0
+  - COMMIT=${TRAVIS_COMMIT::8}
+  - REPO="dimmsd/ubuntu-php-fpm"
+  - FPM_IMAGE=ubuntu-php-fpm
+  - UBUNTU_VERSION=16.04
+  - TIMEZONE=Europe/Moscow
+  - OWN_USER=dimm
+  - OWN_UID=1000
+  - OWN_GID=1000
+  - TEST_A=0.2 # removed
+  - secure: iWjqO2KFc/Nabk4KlbzwAJH/8LKigc4ju5dfTPfC0H16KRGGFvxTB7mxAtyh7gsLOX7WgOUepXKSHAKbMwkd2LOGFCya6pbr75KnqCUPPvj9JSLZe5Do4/7LGhpCc4mcswBtVRJeUg9KHkvTTfU5kvo/XL5hoQX1wOF8B0KzSQj4JXdEoFGhHppNzy7Ypfg2tGJzyKwE18b7tSnW9sKZjrHuyT3Dt+1kjIKnpbZH9fOMZBtYG9N5Xc+ATc0/YqFNWm/alBW7OTruC74Kz8s/ipeFTqH2tGT+zcg6TG1R0tywNDFDIHKIzNVn+6KppqJAxaau/Ql4D0ERPkRWAPUbkU+13Wtg+9TjNE1FFKZpJAoH07DOgNIWNn93/BK0v5XNT+lfe6jVl6mB73sysNMXtnt2e986qjisOJbZQvUfMFL7+95g+CFZqxQYNGrEXuWE4AFBlaSODAvPXjXXwXA3O2adqKLtatpBNk3B4wPHaG0DQWhww3U58uZRl/gfDrLzueaxiUcMjLxqpGbc3KSLqWw3raww15YTsuioxbviU8K6QA4pk9SS5sw/jecZXB+M+sJMd7crKbSz4F3giK9rpX+2Bd2NOyG+7oDT24+JGTHrOvdMhqvd5AR+f9YxOIxD2Adafbe1cB8ek8cMkgfEj4h6UEHH+WMTTMLRyQvR4wM=
+  - secure: kIZTTaL5mj/c4zW5phAx24iq1J1tNuiBCg3qXA1FECsrS3g6ePKV6TOewqsJZTQnAc3UBaD7OU4IAvbH8W9eBkLFB+ZZX0yd2i8XVG2LDjOAIE+G1bEgPeza6h1TkEJdirWzxKKJZIz79bEN+rvLp27xLu7ssqNbui4dTubgfO0/AmJFduWh/YfYjUQxvPzllkHRhuZVJ2oJZ5pTUzstR0RaBpU9JKK8eGfhqRNEMf3ziy3ijig6LyPnSCEfRkxhfC5+IR0YS+0wBOB9LK5YkkMoSZ/KYIxD9rLNSNz+eY4bHSb7YNWHPbQ1Di4aETQnRkFmvHkAxorLqq6CoCXoqY6Zyw+sikowQA9QoRksrb6xq0NctO9LieR6AESV6XnIvkEUmfre/MQP2mPsKJ9EjHSp11CjGD6vRjMyXJ7JXYnIeXbqrEQoDxZhiqCsz1nd5ej9CB2ENimnVskXCukQEKijfeg327Xvx6EvrdN3IZi2GnxQJQvPb/CuZNscDk+YIv4g1QTdRLLuwzdmnS/lDe3ABpq0V6GLbHI1JILw2R7MvdrkCn5EpwOPDavbd7wTCGtRczf30ZOpzvK2aQnB4UM8g+GVBQ5cwU6Ep7SV+vSlmHILQJmyE1zZelK3/86Hh29r2BMYzFfk2rFE3PJuzu3MeZt2qi7p1CUukLi7sH0=
+  - secure: BU7hg/eUybVrsOzUlgjEeybSQk480KqoomeL0Yc8gsBzmrvHTIQkoJWfmq33Ce9NZ6FkJtwpSVdawvHZrrzZOqIRYXJ4i6MCwh3XSnGLRcxQ25SYkJRz/NugKOz/WGt5fl3r8LcDiLrLuMGJm5CpcYEWY/DKwRdyDAUiMdSupEB7bUeXlN1qRPnXy9Yr9iYQgj01vBCrrHvPyyrA3rGF3UMNZhjae0wwGLKJcfAwUsBouXxzHC4YGEI51ch802WuhgzIBe5l/QZGFJ4QD1qvwuK6YjJrVRdRTZvx6QS8GZ/CfT/WucLIudKwqlnmTvWhOdVy1St2VJbtwTMUS1yVbpdZ3NLtDdTdDUUY8wpiVjR5Jbe3tBSxjr/G+TxRAwvRFsKI0T05M2oxcZV9MToq0z2YU5r6Zl2rxN8hreUJ/pfrrdVt4ECykpD0KuTpx+EmIxSJVlzFWhWkCa7VOd7yDsJmAj4vYiQCG3TeiNf6R2C8pLSjXjxLtxlFFQuWONkiqspvhKCgsIwH95+E59D/uUelHPS4tocKK8cJPnWJZ10SaO6BNux3u0wiZtcyTRO3dOs+S4a/H0joCIEclkYpk+D5SuJmGH1OI59eK8hn1iZtGaddtcnSUSvrVkkT69kHHEsjQRknSDozAPe+9/jyEM7fOLyIvoRrZKx1Q9oRzDU=
+  matrix:
+  - PHP_VERSION=5.6
+  - PHP_VERSION=7.0
+  - PHP_VERSION=7.1
+  - PHP_VERSION=7.2
+  - PHP_VERSION=7.3
+before_install:
+- sudo apt update -y
+- sudo apt install --only-upgrade docker-ce -y
+- sudo rm /usr/local/bin/docker-compose
+- curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname
+  -s`-`uname -m` > docker-compose
+- chmod +x docker-compose
+- sudo mv docker-compose /usr/local/bin
+- env > .env
+# DON'T FORGOT travis settings maximum_number_of_builds --set 1
+install:
+- docker-compose build
+- docker-compose up -d
+script:
+- docker images
+- docker ps | grep -q con-$FPM_IMAGE
+- ./utils/test1_host.sh
+- ./utils/test2_host.sh
+- ./utils/test3_host.sh
+- ./utils/test4_host.sh
+- ./utils/test5_host.sh
+- ./utils/test6_host.sh
+after_success:
+- docker login -u $DOCKER_USER -p $DOCKER_PASS
+- export TAG=$UBUNTU_VERSION.$PHP_VERSION
+- docker tag $FPM_IMAGE:$TAG $REPO:$TAG
+- docker push $REPO:$TAG

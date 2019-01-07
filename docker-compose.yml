@@ -1,0 +1,24 @@
+version: '2'
+services:
+
+  php-fpm:
+    build:
+      context: .
+      dockerfile: ./php-fpm/Dockerfile
+      args:
+        PHP_VERSION: ${PHP_VERSION}
+        UBUNTU_VERSION: ${UBUNTU_VERSION}
+        COMMIT: ${COMMIT}
+    container_name: con-${FPM_IMAGE}
+    image: ${FPM_IMAGE}:${UBUNTU_VERSION}.${PHP_VERSION}
+    environment:
+      - TIMEZONE=${TIMEZONE}
+      - OWN_USER=${OWN_USER}
+      - OWN_GID=${OWN_GID}
+      - OWN_UID=${OWN_UID}
+      - PHP_VERSION=${PHP_VERSION}
+    volumes:
+      - ./www:/var/www
+      - ./log-xdebug:/tmp/xdebug
+      - ./log-fpm:/tmp/log-fpm
+
