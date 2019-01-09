@@ -3,7 +3,7 @@
 SHELL = /bin/sh
 
 .DEFAULT_GOAL := help
-.PHONY : help config-test build up down exec-as-root exec-as-user fpm-status fpm-exec-index
+.PHONY : help config-test build up down exec-as-root exec-as-user fpm-status fpm-exec-index set-www-access
 
 cnf ?= .env
 
@@ -18,7 +18,6 @@ FPMIP=$(shell docker inspect con-$(FPM_IMAGE) | grep '"IPAddress"' | grep -oE "\
 help:
 	@echo "Help:"
 	@echo "\tconfig-test - Test docker-compose.yml"
-	@echo "\tset-log-access - Set permissions for PHP-FPM log (for read from host)"
 	@echo "\tset-www-access - Set permissions for ./www folder: 644 for files and 755 for folders"
 	@echo "\tbuild - Build a Dockefile"
 	@echo "\tup - Up service"
@@ -29,8 +28,6 @@ help:
 	@echo "\tfpm-exec-index - Execute /var/www/main/index.php over PHP-FPM"
 config-test:
 	@docker-compose -f docker-compose.yml config
-set-log-access:
-	sudo chmod -R 644 ./log-fpm/*
 set-www-access:
 	find ./www/ -type f -exec chmod 644 {} \;
 	find ./www/ -type d -exec chmod 755 {} \;

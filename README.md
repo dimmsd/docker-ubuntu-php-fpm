@@ -19,7 +19,6 @@ Example based on images:
 ```
 $ make help
 config-test			Test docker-compose.yml
-set-log-access			Set permissions for PHP-FPM log
 set-www-access			Set permissions for ./www folder : 644 for files and 755 for folders
 build				Build a Dockerfile
 up				Up service
