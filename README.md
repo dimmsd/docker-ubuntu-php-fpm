@@ -4,9 +4,13 @@
 
 [The Docker Hub page](https://hub.docker.com/r/dimmsd/ubuntu-php-fpm)
 
-Image size ~ 197 MB
+Image size ~ 200 MB
 
 Ubuntu 16.04 + PHP-FPM (версии PHP 5.6, 7.0, 7.1, 7.2, 7.3)
+
+Contains php-fpm, php-cli, xdebug, composer
+
+Default XDEBUG enabled for PHP-FPM and disabled for PHP-CLI
 
 Image tags 16.04.5.6 - 16.04.7.3
 

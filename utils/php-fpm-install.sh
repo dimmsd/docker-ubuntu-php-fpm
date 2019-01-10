@@ -5,6 +5,9 @@ echo "PHP Version is "$PHP_VERSION
 
 apt-get -y install --no-install-recommends \
     bc \
+    wget \
+    zip \
+    unzip \
     php$PHP_VERSION \
     php$PHP_VERSION-xdebug \
     php$PHP_VERSION-cli \

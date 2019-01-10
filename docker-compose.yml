@@ -11,6 +11,8 @@ services:
     volumes:
       - ./utils:/tmp/utils
       - ./log-fpm:/tmp/log-fpm
+    networks:
+      test_demo:
 
   php-fpm:
     build:
@@ -32,4 +34,10 @@ services:
       - ./www:/var/www
       - ./log-xdebug:/tmp/xdebug
       - ./log-fpm:/tmp/log-fpm
+    networks:
+      test_demo:
 
+networks:
+  test_demo:
+    driver: bridge
+    name: test_demo

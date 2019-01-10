@@ -16,6 +16,10 @@ RUN chmod +x /usr/local/bin/php-fpm-install.sh \
     && mkdir -p /var/www/default \
     && mkdir -p /var/www/main \
     && mkdir -p /run/php-fpm \
+# Disable XDEBUG for cli
+    && phpdismod -s cli xdebug \
+# Install composer
+    && /usr/local/bin/install-composer.sh \
 # clean
     && apt-get -y autoremove \
     && apt-get clean \
