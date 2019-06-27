@@ -8,6 +8,10 @@ apt-get -y install --no-install-recommends \
     wget \
     zip \
     unzip \
+    git \
+    tar \
+    mysql-client \
+    libwebp-dev \
     php$PHP_VERSION \
     php$PHP_VERSION-xdebug \
     php$PHP_VERSION-cli \
@@ -29,6 +33,7 @@ apt-get -y install --no-install-recommends \
     php$PHP_VERSION-dom \
     php$PHP_VERSION-xmlwriter \
     php$PHP_VERSION-xmlrpc \
+    php$PHP_VERSION-imagick \
     php$PHP_VERSION-ldap
 
 if [ `echo "$PHP_VERSION<7.2"|bc` -eq 1 ]; then
