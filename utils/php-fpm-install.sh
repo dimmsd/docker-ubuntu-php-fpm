@@ -34,6 +34,7 @@ apt-get -y install --no-install-recommends \
     php$PHP_VERSION-xmlwriter \
     php$PHP_VERSION-xmlrpc \
     php$PHP_VERSION-imagick \
+    php$PHP_VERSION-soap \
     php$PHP_VERSION-ldap
 
 if [ `echo "$PHP_VERSION<7.2"|bc` -eq 1 ]; then
